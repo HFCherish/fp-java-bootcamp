@@ -13,6 +13,10 @@ public class Assets {
         return assets.stream().mapToInt(a -> a.value).sum();
     }
 
+    public static Integer sumBondValue(final List<Asset> assets) {
+        return assets.stream().filter(asset -> asset.type.equals(AssetType.BOND)).mapToInt(a -> a.value).sum();
+    }
+
 
     /**
      * @author pzzheng
