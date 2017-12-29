@@ -45,4 +45,12 @@ public class AssetTest {
     public void should_sum_bond_assets() {
         assertThat(Assets.sumBondValue(assets), is(5000));
     }
+
+    /**
+     * @author pzzheng
+     */
+    @Test
+    public void should_sum_stock_assets() {
+        assertThat(Assets.sumStockValue(assets), is(7000));
+    }
 }
