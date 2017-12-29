@@ -1,11 +1,13 @@
 package com.tw.training.fp.designpattern.SRP;
 
+import com.tw.training.fp.designpattern.SRP.Assets.Asset;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static com.tw.training.fp.designpattern.SRP.Assets.AssetsFilter.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -15,7 +17,7 @@ import static org.junit.Assert.assertThat;
  */
 public class AssetTest {
 
-    private List<Assets.Asset> assets;
+    private List<Asset> assets;
 
     /**
      * @author pzzheng
@@ -23,10 +25,10 @@ public class AssetTest {
     @Before
     public void setUp() {
         assets = Arrays.asList(
-                Assets.create(AssetType.BOND, 2000),
-                Assets.create(AssetType.BOND, 3000),
-                Assets.create(AssetType.STOCK, 3000),
-                Assets.create(AssetType.STOCK, 4000)
+                new Asset(AssetType.BOND, 2000),
+                new Asset(AssetType.BOND, 3000),
+                new Asset(AssetType.STOCK, 3000),
+                new Asset(AssetType.STOCK, 4000)
         );
     }
 
@@ -35,7 +37,7 @@ public class AssetTest {
      */
     @Test
     public void should_sum_all_asset() {
-        assertThat(Assets.sumValue(assets), is(12000));
+        assertThat(Assets.sumValue.applyAsInt(assets, filterAll), is(12000));
     }
 
     /**
@@ -43,7 +45,7 @@ public class AssetTest {
      */
     @Test
     public void should_sum_bond_assets() {
-        assertThat(Assets.sumBondValue(assets), is(5000));
+        assertThat(Assets.sumValue.applyAsInt(assets, filterBondAsset), is(5000));
     }
 
     /**
@@ -51,6 +53,6 @@ public class AssetTest {
      */
     @Test
     public void should_sum_stock_assets() {
-        assertThat(Assets.sumStockValue(assets), is(7000));
+        assertThat(Assets.sumValue.applyAsInt(assets, filterStockAsset), is(7000));
     }
 }

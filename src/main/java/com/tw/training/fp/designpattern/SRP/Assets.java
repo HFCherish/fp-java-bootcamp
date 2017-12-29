@@ -1,25 +1,21 @@
 package com.tw.training.fp.designpattern.SRP;
 
-import java.util.List; /**
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.function.ToIntBiFunction;
+
+/**
  * @author pzzheng
  * @date 12/29/17
  */
 public class Assets {
-    public static Asset create(final AssetType type, final int value) {
-        return new Asset(type, value);
+    public static class AssetsFilter {
+        public static final Predicate<Asset> filterStockAsset = asset -> asset.type.equals(AssetType.STOCK);
+        public static final Predicate<Asset> filterBondAsset = asset -> asset.type.equals(AssetType.BOND);
+        public static final Predicate<Asset> filterAll = asset -> true;
     }
 
-    public static Integer sumValue(final List<Asset> assets) {
-        return assets.stream().mapToInt(a -> a.value).sum();
-    }
-
-    public static Integer sumBondValue(final List<Asset> assets) {
-        return assets.stream().filter(asset -> asset.type.equals(AssetType.BOND)).mapToInt(a -> a.value).sum();
-    }
-
-    public static Integer sumStockValue(final List<Asset> assets) {
-        return assets.stream().filter(asset -> asset.type.equals(AssetType.STOCK)).mapToInt(a -> a.value).sum();
-    }
+    public static final ToIntBiFunction<List<Asset>, Predicate<Asset>> sumValue = (assets, filter) -> assets.stream().filter(filter).mapToInt(a -> a.value).sum();
 
 
     /**
@@ -30,7 +26,7 @@ public class Assets {
         private final AssetType type;
         private final int value;
 
-        private Asset(final AssetType type, final int value) {
+        public Asset(final AssetType type, final int value) {
             this.type = type;
             this.value = value;
         }
