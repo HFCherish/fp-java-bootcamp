@@ -1,8 +1,10 @@
 package com.tw.training.fp.designpattern.SRP;
 
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.function.ToIntBiFunction;
+import java.util.stream.Collectors;
 
 /**
  * @author pzzheng
@@ -16,6 +18,16 @@ public class Assets {
     }
 
     public static final ToIntBiFunction<List<Asset>, Predicate<Asset>> sumValue = (assets, filter) -> assets.stream().filter(filter).mapToInt(a -> a.value).sum();
+
+    public static final BiFunction<Integer, Asset, Asset> addValue = (value, asset) -> new Asset(asset.type, asset.value + value);
+
+    public static final BiFunction<Integer, Asset, Asset> encash = (value, asset) -> addValue.apply(-1 * value, asset);
+
+    public static final TriFunction<Integer, Predicate<Asset>, List<Asset>, List<Asset>> addValueToAll = (value, filter, assets) ->
+            assets.stream().filter(filter)
+                    .map(asset -> addValue.apply(value, asset))
+                    .collect(Collectors.toList());
+
 
 
     /**
