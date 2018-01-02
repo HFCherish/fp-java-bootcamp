@@ -42,5 +42,13 @@ public class Assets {
             this.type = type;
             this.value = value;
         }
+
+        public AssetType getType() {
+            return type;
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
 }
