@@ -1,4 +1,4 @@
-package com.tw.training.fp.designpattern.SRP;
+package com.tw.training.fp.fpusingjava.v1;
 
 /**
  * @author pzzheng

@@ -1,4 +1,4 @@
-package com.tw.training.fp.designpattern.SRP;
+package com.tw.training.fp.fpusingjava.v1;
 
 import java.util.List;
 import java.util.function.BiFunction;

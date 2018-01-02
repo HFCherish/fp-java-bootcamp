@@ -1,13 +1,15 @@
-package com.tw.training.fp.designpattern.SRP;
+package com.tw.training.fp.fpusingjava.v1;
 
-import com.tw.training.fp.designpattern.SRP.Assets.Asset;
+import com.tw.training.fp.fpusingjava.v1.AssetType;
+import com.tw.training.fp.fpusingjava.v1.Assets;
+import com.tw.training.fp.fpusingjava.v1.Assets.Asset;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.tw.training.fp.designpattern.SRP.Assets.AssetsFilter.*;
+import static com.tw.training.fp.fpusingjava.v1.Assets.AssetsFilter.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
