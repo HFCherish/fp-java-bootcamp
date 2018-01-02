@@ -1,7 +1,5 @@
 package com.tw.training.fp.fpusingjava.v1;
 
-import com.tw.training.fp.fpusingjava.v1.AssetType;
-import com.tw.training.fp.fpusingjava.v1.Assets;
 import com.tw.training.fp.fpusingjava.v1.Assets.Asset;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +15,7 @@ import static org.junit.Assert.assertThat;
  * @author pzzheng
  * @date 12/29/17
  */
-public class AssetTest {
+public class AssetTestUsingLambda {
 
     private List<Asset> assets;
 

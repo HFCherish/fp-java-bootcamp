@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
  * @date 12/29/17
  */
 public class Assets {
+
     public static class AssetsFilter {
         public static final Predicate<Asset> filterStockAsset = asset -> asset.type.equals(AssetType.STOCK);
         public static final Predicate<Asset> filterBondAsset = asset -> asset.type.equals(AssetType.BOND);
@@ -29,6 +30,9 @@ public class Assets {
                     .collect(Collectors.toList());
 
 
+    public static Integer sumValue(List<Asset> assets, Predicate<Asset> filter) {
+        return assets.stream().filter(filter).mapToInt(a -> a.value).sum();
+    }
 
     /**
      * @author pzzheng
