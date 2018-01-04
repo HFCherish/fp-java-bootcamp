@@ -45,4 +45,13 @@ public class ImmutableRGB {
     public String getName() {
         return name;
     }
+
+    public ImmutableRGB invert() {
+        return new ImmutableRGB(
+                255 - red,
+                255 - green,
+                255 - blue,
+                "invert-" + name
+        );
+    }
 }

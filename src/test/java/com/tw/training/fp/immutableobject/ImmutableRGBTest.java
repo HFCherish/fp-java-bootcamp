@@ -3,6 +3,7 @@ package com.tw.training.fp.immutableobject;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -34,5 +35,17 @@ public class ImmutableRGBTest {
         new ImmutableRGB(-1, 1, 1, colorName);
     }
 
+    /**
+     * @author pzzheng
+     */
+    @Test
+    public void should_revert_color() {
+        ImmutableRGB original = new ImmutableRGB(1, 1, 1, colorName);
 
+        ImmutableRGB invert = original.invert();
+
+        assertThat(invert, is(not(original)));
+        assertThat(invert.getName(), is(not(colorName)));
+        assertThat(invert.getRed(), is(254));
+    }
 }
