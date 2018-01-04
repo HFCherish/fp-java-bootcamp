@@ -15,6 +15,19 @@ public class ImmutableRGB {
         this.green = green;
         this.blue = blue;
         this.name = name;
+        checkInput();
+    }
+
+    private void checkInput() {
+        if (primaryColorOutOfRange(red) ||
+                primaryColorOutOfRange(green) ||
+                primaryColorOutOfRange(blue)) {
+            throw new IllegalArgumentException("red, green, blue should all be in [0,255]");
+        }
+    }
+
+    private boolean primaryColorOutOfRange(int primaryColor) {
+        return primaryColor < 0 || primaryColor > 255;
     }
 
     public int getRed() {

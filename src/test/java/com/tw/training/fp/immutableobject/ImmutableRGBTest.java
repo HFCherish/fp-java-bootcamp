@@ -26,5 +26,13 @@ public class ImmutableRGBTest {
         assertThat(someColor.getName(), is(colorName));
     }
 
+    /**
+     * @author pzzheng
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void should_throw_exception_if_atom_color_is_out_of_range() {
+        new ImmutableRGB(-1, 1, 1, colorName);
+    }
+
 
 }
