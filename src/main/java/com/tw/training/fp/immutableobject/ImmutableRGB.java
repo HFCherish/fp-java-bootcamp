@@ -4,7 +4,7 @@ package com.tw.training.fp.immutableobject;
  * @author pzzheng
  * @date 1/4/18
  */
-public class ImmutableRGB {
+public final class ImmutableRGB {
     private final int red;
     private final int green;
     private final int blue;
