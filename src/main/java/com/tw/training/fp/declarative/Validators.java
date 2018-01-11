@@ -1,7 +1,7 @@
 package com.tw.training.fp.declarative;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author pzzheng
@@ -11,14 +11,17 @@ public class Validators {
 
 
     public static List<String> validate(Map<String, Object> input, Validator... validators) {
-        return null;
+        return Arrays.stream(validators).filter(v -> v.validate(input).isPresent())
+                .map(v -> v.validate(input).get())
+                .collect(Collectors.toList());
     }
 
     interface Validator {
-        List<String> validate(Map<String, Object> input);
+        Optional<String> validate(Map<String, Object> input);
     }
 
     public static Validator requireField(String fieldName) {
-        return null;
+        return input -> input.getOrDefault(fieldName, "").toString().isEmpty() ?
+                Optional.of(fieldName + " cannot be empty") : Optional.empty();
     }
 }
