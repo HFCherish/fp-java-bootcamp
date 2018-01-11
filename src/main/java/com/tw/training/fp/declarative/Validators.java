@@ -16,12 +16,17 @@ public class Validators {
                 .collect(Collectors.toList());
     }
 
+    public static Validator fieldMatchesPattern(String fieldName, String pattern, String errorMessage) {
+        return input -> input.getOrDefault(fieldName, "").toString().matches(pattern) ?
+                Optional.empty() : Optional.of("[字段：" + fieldName + "] " + errorMessage);
+    }
+
     interface Validator {
         Optional<String> validate(Map<String, Object> input);
     }
 
     public static Validator requireField(String fieldName) {
         return input -> input.getOrDefault(fieldName, "").toString().isEmpty() ?
-                Optional.of(fieldName + " cannot be empty") : Optional.empty();
+                Optional.of("[字段：" + fieldName + "] 字段不能为空") : Optional.empty();
     }
 }
